@@ -1,0 +1,264 @@
+Instanciation of PibuBcu : bcu
+    nb_master = 1
+    nb_target = 3
+    time_out  = 100
+
+Instanciation of PibusMips32Xcache : proc
+    proc_id      = 0
+    icache_ways  = 1
+    icache_sets  = 64
+    icache_words = 4
+    dcache_ways  = 1
+    dcache_sets  = 64
+    dcache_words = 4
+    wbuf_depth   = 8
+    snoop        = 0
+
+Instanciation of PibusSimpleRam : rom
+    latency = 0
+    segment seg_reset | base = 0xbfc00000 | size = 0x1000
+
+Instanciation of PibusSimpleRam : ram
+    latency = 0
+    segment seg_kcode | base = 0x80000000 | size = 0x4000
+    segment seg_kdata | base = 0x82000000 | size = 0x10000
+    segment seg_kunc | base = 0x81000000 | size = 0x1000
+    segment seg_code | base = 0x400000 | size = 0x4000
+    segment seg_data | base = 0x1000000 | size = 0x4000
+
+Instanciation of PibusMultiTty : tty
+Loading at 0xbfc00000 size 0x1000: seg_reset 
+Loading at 0x80000000 size 0x4000: seg_kcode 
+Loading at 0x82000000 size 0x10000: seg_kdata 
+Loading at 0x81000000 size 0x1000: seg_kunc 
+Loading at 0x400000 size 0x4000: seg_code 
+Loading at 0x1000000 size 0x4000: seg_data 
+Loading at 0x2000000 size 0x4000: nothing
+Loading at 0xbfc00000 size 0x1000: seg_reset 
+Loading at 0x80000000 size 0x4000: seg_kcode 
+Loading at 0x82000000 size 0x10000: seg_kdata 
+Loading at 0x81000000 size 0x1000: seg_kunc 
+Loading at 0x400000 size 0x4000: seg_code 
+Loading at 0x1000000 size 0x4000: seg_data 
+Loading at 0x2000000 size 0x4000: nothing
+
+*******  cycle = 0 **************
+bcu : fsm = IDLE
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_SELECT  DCACHE_IDLE  PIBUS_IDLE
+rom : IDLE
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0
+sel_ram = 0
+sel_tty = 0
+avalid  = 0
+read    = 0
+lock    = 0
+address = 0
+ack     = 0
+data    = 0
+*******  cycle = 1 **************
+bcu : fsm = IDLE | granted master = 0
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_READ_REQ
+rom : IDLE
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0x1
+gnt     = 0x1
+sel_rom = 0
+sel_ram = 0
+sel_tty = 0
+avalid  = 0
+read    = 0
+lock    = 0
+address = 0
+ack     = 0
+data    = 0
+*******  cycle = 2 **************
+bcu : fsm = AD | selected target = 0
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_READ_AD
+rom : IDLE
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0x1
+sel_ram = 0
+sel_tty = 0
+avalid  = 0x1
+read    = 0x1
+lock    = 0x1
+address = 0xbfc00000
+ack     = 0
+data    = 0
+*******  cycle = 3 **************
+bcu : fsm = DTAD | selected target = 0
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_READ_DTAD
+rom : READ_OK
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0x1
+sel_ram = 0
+sel_tty = 0
+avalid  = 0x1
+read    = 0x1
+lock    = 0x1
+address = 0xbfc00004
+ack     = 0x2
+data    = 0x3c1d0200
+*******  cycle = 4 **************
+bcu : fsm = DTAD | selected target = 0
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_READ_DTAD
+rom : READ_OK
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0x1
+sel_ram = 0
+sel_tty = 0
+avalid  = 0x1
+read    = 0x1
+lock    = 0x1
+address = 0xbfc00008
+ack     = 0x2
+data    = 0x27bd0000
+*******  cycle = 5 **************
+bcu : fsm = DTAD | selected target = 0
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_READ_DTAD
+rom : READ_OK
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0x1
+sel_ram = 0
+sel_tty = 0
+avalid  = 0x1
+read    = 0x1
+lock    = 0
+address = 0xbfc0000c
+ack     = 0x2
+data    = 0x27bd4000
+*******  cycle = 6 **************
+bcu : fsm = DT
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_READ_DT
+rom : READ_OK
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0
+sel_ram = 0
+sel_tty = 0
+avalid  = 0
+read    = 0x1
+lock    = 0
+address = 0xbfc0000c
+ack     = 0x2
+data    = 0x341aff13
+*******  cycle = 7 **************
+bcu : fsm = IDLE
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_WAIT  DCACHE_IDLE  PIBUS_IDLE
+rom : IDLE
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0
+sel_ram = 0
+sel_tty = 0
+avalid  = 0
+read    = 0x1
+lock    = 0
+address = 0xbfc0000c
+ack     = 0x2
+data    = 0x341aff13
+*******  cycle = 8 **************
+bcu : fsm = IDLE
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_MISS_UPDT  DCACHE_IDLE  PIBUS_IDLE
+rom : IDLE
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0
+sel_ram = 0
+sel_tty = 0
+avalid  = 0
+read    = 0x1
+lock    = 0
+address = 0xbfc0000c
+ack     = 0x2
+data    = 0x341aff13
+*******  cycle = 9 **************
+bcu : fsm = IDLE
+proc : <InsReq    valid mode MODE_KERNEL @ 0xbfc00000>
+proc : <InsRsp  invalid no error ins 0>
+proc : <DataReq invalid mode MODE_HYPER type DATA_READ @ 0 wdata 0 be 0>
+proc : <DataRsp invalid no error rdata 0>
+proc : ICACHE_IDLE  DCACHE_IDLE  PIBUS_IDLE
+rom : IDLE
+ram : IDLE
+tty : IDLE   keyboard status[0] = 0   display status[0] = 0
+  -- pibus signals -- 
+req     = 0
+gnt     = 0
+sel_rom = 0
+sel_ram = 0
+sel_tty = 0
+avalid  = 0
+read    = 0x1
+lock    = 0
+address = 0xbfc0000c
+ack     = 0x2
+data    = 0x341aff13

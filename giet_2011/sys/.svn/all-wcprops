@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/sesi-almo/!svn/ver/224/soft/giet/sys
+END
+drivers.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sesi-almo/!svn/ver/227/soft/giet/sys/drivers.c
+END
+ctx_handler.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/138/soft/giet/sys/ctx_handler.h
+END
+hwr_mapping.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/226/soft/giet/sys/hwr_mapping.h
+END
+sys_handler.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/102/soft/giet/sys/sys_handler.h
+END
+exc_handler.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/133/soft/giet/sys/exc_handler.h
+END
+drivers.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sesi-almo/!svn/ver/102/soft/giet/sys/drivers.h
+END
+common.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/sesi-almo/!svn/ver/155/soft/giet/sys/common.c
+END
+giet.s
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/sesi-almo/!svn/ver/224/soft/giet/sys/giet.s
+END
+irq_handler.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/157/soft/giet/sys/irq_handler.c
+END
+ctx_handler.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/138/soft/giet/sys/ctx_handler.c
+END
+sys_handler.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/138/soft/giet/sys/sys_handler.c
+END
+exc_handler.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/133/soft/giet/sys/exc_handler.c
+END
+common.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/sesi-almo/!svn/ver/102/soft/giet/sys/common.h
+END
+irq_handler.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sesi-almo/!svn/ver/102/soft/giet/sys/irq_handler.h
+END

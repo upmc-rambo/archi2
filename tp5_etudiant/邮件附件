@@ -1,0 +1,27 @@
+sc_core::sc_module_name      // instance name
+uint32_t              		  tgtid,                  // target index 
+soclib::common::PibusSegmentTable     &segtab,           // segment table
+uint32_t  		  latency,                // access latency
+uint32_t      	      width,                  // frame width
+uint32_t     	      height,                 // frame height
+int         	     subsampling = 420);     // pixel format
+
+
+
+*** proc[0] at cycle 5012208
+- INSTRUCTIONS       = 4046323
+- CPI                = 1.23871
+- CACHED READ RATE   = 0.261667
+- UNCACHED READ RATE = 0.00130143
+- WRITE RATE         = 0.141599
+- IMISS RATE         = 2.05125e-05
+- DMISS RATE         = 2.45564e-05
+- IMISS COST         = 16.2048
+- DMISS COST         = 15.2308
+- UNC COST           = 6
+- WRITE COST         = 0
+
+
+master 0 : n_req = 578331 , n_wait_cycles = 578331 , access time = 1
+
+

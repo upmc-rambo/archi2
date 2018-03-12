@@ -1,0 +1,118 @@
+#################################################################################
+#	File : reset.s
+#	Author : Alain Greiner
+#	Date : 25/12/2011
+#################################################################################
+#       This is an improved boot code for a bi-processor architecture.
+#	Depending on the proc_id, each processor
+#       - initializes the interrupt vector.
+#       - initializes the ICU MASK registers.
+#       - initializes the TIMER .
+#       - initializes the Status Register.
+#       - initializes the stack pointer.
+#       - initializes the EPC register, and jumps to the user code.
+#################################################################################
+		
+	.section .reset,"ax",@progbits
+
+	.extern	seg_stack_base
+	.extern	seg_data_base
+
+	.func	reset
+	.type   reset, %function
+
+reset:
+       	.set noreorder
+
+# get the processor id
+        mfc0	$27,	$15,	1		# get the proc_id
+        andi	$27,	$27,	0x1		# no more than 2 processors
+        bne	$27,	$0,	proc1
+
+proc0:
+        # initialises interrupt vector entries for PROC[0]
+	la	$28,	_interrupt_vector
+	la	$24,	_isr_timer
+	la	$23,	_isr_tty_get
+	sw	$24,	8($28)
+	sw	$23,	12($28)
+	
+	
+        #initializes the ICU[0] MASK register
+
+	la	$22,	seg_icu_base
+	li	$21,	0xC
+	sw	$21,	8($22)
+
+        # initializes TIMER[0] PERIOD and RUNNING registers
+	
+	li	$24,	0x0000C350
+	la	$23,	seg_timer_base
+	sw	$24,	8($23)
+	sw	$24,	4($23)
+	
+	
+	
+
+        # initializes stack pointer for PROC[0]
+	la	$29,	seg_stack_base
+        li	$27,	0x10000			# stack size = 64K
+	addu	$29,	$29,	$27    		# $29 <= seg_stack_base + 64K
+
+        # initializes SR register for PROC[0]
+       	li	$26,	0x0000FF13	
+       	mtc0	$26,	$12			# SR <= 0x0000FF13
+
+        # jump to main in user mode: main[0]
+	la	$26,	seg_data_base
+        lw	$26,	0($26)			# $26 <= main[0]
+	mtc0	$26,	$14			# write it in EPC register
+	eret
+
+proc1:
+        # initialises interrupt vector entries for PROC[1]
+	la	$28,	_interrupt_vector
+	la	$24,	_isr_timer
+	la	$23,	_isr_tty_get
+	sw	$24,	16($28)
+	sw	$23,	20($28)
+
+        #initializes the ICU[1] MASK register
+
+	la	$22,	seg_icu_base
+	li	$21,	0x30
+	sw	$21,	40($22)
+
+        # initializes TIMER[1] PERIOD and RUNNING registers
+
+
+	li	$24,	0x000186A0
+	la	$23,	seg_timer_base
+	sw	$24,	24($23)
+	sw	$24,	20($23)
+
+
+
+        # initializes stack pointer for PROC[1]
+	la	$29,	seg_stack_base
+        li	$27,	0x20000			# stack size = 64K
+	addu	$29,	$29,	$27    		# $29 <= seg_stack_base + 64K
+
+        # initializes SR register for PROC[1]
+
+	li	$26,	0x0000FF13	
+       	mtc0	$26,	$12			# SR <= 0x0000FF13
+
+        # jump to main in user mode: main[1]
+	la	$26,	seg_data_base
+        lw	$26,	4($26)			# $26 <= main[1]
+	mtc0	$26,	$14			# write it in EPC register
+	eret
+
+	.set reorder
+
+	.set reorder
+
+	.endfunc
+	.size	reset, .-reset
+
