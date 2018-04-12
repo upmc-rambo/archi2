@@ -70,7 +70,7 @@ Target FSM controls
 
 
 | r\_target\_fsm | r\_source |r\_dest|r\_nwords|r\_stop|
-|--|--|--|--|--|--|--|--|
+|--|--|--|--|--|
 |  | addressable |addressable|addressable|addressable|||
 
 
@@ -79,9 +79,9 @@ The master FSM controls
 
 
 
-r\_master\_fsm | r\_read\_ptr | r\_write\_ptr | r\_index | r\_count
-|--|--|--|--|--|--|--|--|--|--|--|--|
-|  |  |
+|r\_master\_fsm | r\_read\_ptr | r\_write\_ptr | r\_index | r\_count|
+|--|--|--|--|--|
+| |  |  | | |
 
 
 
