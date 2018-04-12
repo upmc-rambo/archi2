@@ -68,23 +68,34 @@ Soft Reset : After each burst (read or write), the master FSM test the r_stop fl
 
 Target FSM controls
 
+
 | r\_target\_fsm | r\_source |r\_dest|r\_nwords|r\_stop|
 |--|--|--|--|--|--|--|--|
 |  | addressable |addressable|addressable|addressable|||
 
 
+
 The master FSM controls
+
+
 
 r\_master\_fsm | r\_read\_ptr | r\_write\_ptr | r\_index | r\_count
 |--|--|--|--|--|--|--|--|--|--|--|--|
 |  |  |
 
 
+
 others
+
 
 |r\_irq\_disable| r_max |
 |--|--|
 | addressable |  |
+
+
+
+
+
 **Question B5 :**  Complétez le graphe ci-dessous représentant la fonction de transition de l'automate MASTER_FSM du composant  _PibusDma_.
 
 response à la dernière page.
